@@ -1,0 +1,97 @@
+{
+    "app": {
+        "title": "怪物猎人荒野任务编辑器",
+        "loading": "加载中..."
+    },
+    "sidebar": {
+        "open": "打开",
+        "save": "保存",
+        "saveAs": "另存为",
+        "recent": "最近文件",
+        "newQuest": "新建任务"
+    },
+    "tabs": {
+        "basic": "基本信息",
+        "monsters": "怪物",
+        "rewards": "奖励",
+        "messages": "消息"
+    },
+    "basic": {
+        "questName": "任务名称",
+        "description": "描述",
+        "timeLimit": "时间限制 (分钟)",
+        "questLife": "任务生命",
+        "hrRequired": "HR要求",
+        "mrRequired": "MR要求",
+        "maxPlayers": "最大玩家数",
+        "questLevel": "任务等级",
+        "questType": "任务类型",
+        "stage": "地图"
+    },
+    "monsters": {
+        "title": "怪物配置",
+        "addMonster": "添加怪物",
+        "removeMonster": "移除",
+        "monsterType": "怪物",
+        "difficulty": "难度",
+        "size": "体型",
+        "fixedSize": "固定体型",
+        "randomSize": "随机体型",
+        "position": "位置",
+        "groupId": "组ID"
+    },
+    "rewards": {
+        "title": "任务奖励",
+        "addItem": "添加物品",
+        "removeItem": "移除",
+        "itemName": "物品名称",
+        "itemId": "物品ID",
+        "minCount": "最小数量",
+        "maxCount": "最大数量",
+        "probability": "概率 (%)"
+    },
+    "messages": {
+        "title": "任务消息",
+        "language": "语言",
+        "questTitle": "任务标题",
+        "clientName": "委托人",
+        "detail": "详细信息",
+        "languages": {
+            "en": "英语",
+            "zh": "中文",
+            "ja": "日语"
+        }
+    },
+    "actions": {
+        "confirm": "确认",
+        "cancel": "取消",
+        "delete": "删除",
+        "edit": "编辑",
+        "add": "添加"
+    },
+    "questTypes": {
+        "HUNTING": "狩猎",
+        "KILL": "讨伐",
+        "CAPTURE": "捕获",
+        "ARENA": "斗技场",
+        "BOSSRUSH": "Boss连战",
+        "SPECIAL": "特殊"
+    },
+    "bossRush": {
+        "title": "Boss连战设置",
+        "popType": "出现条件",
+        "condition1": "条件1",
+        "condition2": "条件2",
+        "popTypes": {
+            "BEGINNING": "初始 (立即开始)",
+            "REMAIN_HP": "剩余血量",
+            "HUNT_NUM_OR_TIME": "狩猎数或时间"
+        },
+        "labels": {
+            "hpRemain": "剩余血量 %",
+            "huntNum": "狩猎数",
+            "delay": "延迟 (秒)",
+            "timeLimit": "时间限制 (秒)"
+        }
+    }
+}

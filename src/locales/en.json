@@ -1,0 +1,97 @@
+{
+    "app": {
+        "title": "MHWilds Mission Editor",
+        "loading": "Loading..."
+    },
+    "sidebar": {
+        "open": "Open",
+        "save": "Save",
+        "saveAs": "Save As",
+        "recent": "Recent Files",
+        "newQuest": "New Quest"
+    },
+    "tabs": {
+        "basic": "Basic Info",
+        "monsters": "Monsters",
+        "rewards": "Rewards",
+        "messages": "Messages"
+    },
+    "basic": {
+        "questName": "Quest Name",
+        "description": "Description",
+        "timeLimit": "Time Limit (min)",
+        "questLife": "Quest Lives",
+        "hrRequired": "HR Required",
+        "mrRequired": "MR Required",
+        "maxPlayers": "Max Players",
+        "questLevel": "Quest Level",
+        "questType": "Quest Type",
+        "stage": "Stage"
+    },
+    "monsters": {
+        "title": "Monster Configuration",
+        "addMonster": "Add Monster",
+        "removeMonster": "Remove",
+        "monsterType": "Monster",
+        "difficulty": "Difficulty",
+        "size": "Size",
+        "fixedSize": "Fixed Size",
+        "randomSize": "Random Size",
+        "position": "Position",
+        "groupId": "Group ID"
+    },
+    "rewards": {
+        "title": "Quest Rewards",
+        "addItem": "Add Item",
+        "removeItem": "Remove",
+        "itemName": "Item Name",
+        "itemId": "Item ID",
+        "minCount": "Min Count",
+        "maxCount": "Max Count",
+        "probability": "Probability (%)"
+    },
+    "messages": {
+        "title": "Quest Messages",
+        "language": "Language",
+        "questTitle": "Quest Title",
+        "clientName": "Client Name",
+        "detail": "Detail",
+        "languages": {
+            "en": "English",
+            "zh": "Chinese",
+            "ja": "Japanese"
+        }
+    },
+    "actions": {
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add"
+    },
+    "questTypes": {
+        "HUNTING": "Hunting",
+        "KILL": "Kill",
+        "CAPTURE": "Capture",
+        "ARENA": "Arena",
+        "BOSSRUSH": "Boss Rush",
+        "SPECIAL": "Special"
+    },
+    "bossRush": {
+        "title": "Boss Rush Settings",
+        "popType": "Appear Condition",
+        "condition1": "Condition 1",
+        "condition2": "Condition 2",
+        "popTypes": {
+            "BEGINNING": "Beginning",
+            "REMAIN_HP": "Remain HP",
+            "HUNT_NUM_OR_TIME": "Hunt Num or Time"
+        },
+        "labels": {
+            "hpRemain": "HP Remain %",
+            "huntNum": "Hunt Num",
+            "delay": "Delay (sec)",
+            "timeLimit": "Time Limit (sec)"
+        }
+    }
+}

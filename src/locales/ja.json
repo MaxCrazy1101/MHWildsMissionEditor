@@ -1,0 +1,97 @@
+{
+    "app": {
+        "title": "MHWilds ミッションエディター",
+        "loading": "読み込み中..."
+    },
+    "sidebar": {
+        "open": "開く",
+        "save": "保存",
+        "saveAs": "名前を付けて保存",
+        "recent": "最近のファイル",
+        "newQuest": "新規クエスト"
+    },
+    "tabs": {
+        "basic": "基本情報",
+        "monsters": "モンスター",
+        "rewards": "報酬",
+        "messages": "メッセージ"
+    },
+    "basic": {
+        "questName": "クエスト名",
+        "description": "説明",
+        "timeLimit": "制限時間 (分)",
+        "questLife": "クエストライフ",
+        "hrRequired": "HR条件",
+        "mrRequired": "MR条件",
+        "maxPlayers": "最大人数",
+        "questLevel": "クエストレベル",
+        "questType": "クエストタイプ",
+        "stage": "フィールド"
+    },
+    "monsters": {
+        "title": "モンスター設定",
+        "addMonster": "モンスター追加",
+        "removeMonster": "削除",
+        "monsterType": "モンスター",
+        "difficulty": "難易度",
+        "size": "サイズ",
+        "fixedSize": "固定サイズ",
+        "randomSize": "ランダムサイズ",
+        "position": "位置",
+        "groupId": "グループID"
+    },
+    "rewards": {
+        "title": "クエスト報酬",
+        "addItem": "アイテム追加",
+        "removeItem": "削除",
+        "itemName": "アイテム名",
+        "itemId": "アイテムID",
+        "minCount": "最小数",
+        "maxCount": "最大数",
+        "probability": "確率 (%)"
+    },
+    "messages": {
+        "title": "クエストメッセージ",
+        "language": "言語",
+        "questTitle": "クエストタイトル",
+        "clientName": "依頼人",
+        "detail": "詳細",
+        "languages": {
+            "en": "英語",
+            "zh": "中国語",
+            "ja": "日本語"
+        }
+    },
+    "actions": {
+        "confirm": "確認",
+        "cancel": "キャンセル",
+        "delete": "削除",
+        "edit": "編集",
+        "add": "追加"
+    },
+    "questTypes": {
+        "HUNTING": "狩猟",
+        "KILL": "討伐",
+        "CAPTURE": "捕獲",
+        "ARENA": "闘技場",
+        "BOSSRUSH": "ボスラッシュ",
+        "SPECIAL": "特殊"
+    },
+    "bossRush": {
+        "title": "ボスラッシュ設定",
+        "popType": "出現条件",
+        "condition1": "条件1",
+        "condition2": "条件2",
+        "popTypes": {
+            "BEGINNING": "開始時",
+            "REMAIN_HP": "残りHP",
+            "HUNT_NUM_OR_TIME": "狩猟数または時間"
+        },
+        "labels": {
+            "hpRemain": "残りHP %",
+            "huntNum": "狩猟数",
+            "delay": "遅延 (秒)",
+            "timeLimit": "制限時間 (秒)"
+        }
+    }
+}
