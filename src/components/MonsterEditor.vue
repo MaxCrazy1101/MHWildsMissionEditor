@@ -2,6 +2,8 @@
 import { useI18n } from 'vue-i18n';
 import { computed } from 'vue';
 import type { MainTargetData, Enemy, BossRushParams } from '../types/quest';
+
+import { STAGE_DEFAULTS } from '../constants/defaultQuest';
 import { BossRushPopType, BOSS_RUSH_POP_TYPE_VALUES } from '../types/quest';
 import enemies from '../assets/enemies.json';
 import { DeleteIcon } from 'tdesign-icons-vue-next';
@@ -13,6 +15,7 @@ const props = defineProps<{
     index: number;
     bossRushParam?: BossRushParams;
     isBossRush?: boolean;
+    currentStage?: number;
 }>();
 
 const emit = defineEmits<{
@@ -22,6 +25,8 @@ const emit = defineEmits<{
 }>();
 
 const enemyList = enemies as Enemy[];
+const stageDefaults = computed(() => props.currentStage ? STAGE_DEFAULTS[props.currentStage] : undefined);
+const hasDefaults = computed(() => !!stageDefaults.value);
 
 const selectedEnemy = computed(() => {
     return enemyList.find(e => e.fixedId === props.monster._EmID);
@@ -59,6 +64,15 @@ function updateBossRushField<K extends keyof BossRushParams>(field: K, value: Bo
 
 function updateEmID(val: number) {
     emit('update', props.index, { ...props.monster, _EmID: val });
+}
+
+
+
+function updateDifficultyValue(val: string) {
+    emit('update', props.index, {
+        ...props.monster,
+        _DifficultyRankId: { ...props.monster._DifficultyRankId, Value: val }
+    });
 }
 
 const conditionValue1Label = computed(() => {
@@ -111,9 +125,24 @@ const bossRushPopTypeOptions = computed(() => {
                     </t-form-item>
                 </t-col>
 
-                <t-col :span="3">
+                <t-col :span="6">
                     <t-form-item :label="t('monsters.difficulty')">
-                        <t-input :value="monster._DifficultyRankId.Name" readonly />
+                        <div style="display: flex; width: 100%; gap: 8px; align-items: center;">
+                            <!-- Difficulty Name hidden per user request, syncing automatically -->
+                            <t-input :value="monster._DifficultyRankId.Value"
+                                :placeholder="t('monsters.difficultyUUID')"
+                                @change="(val: string | number) => updateDifficultyValue(val as string)"
+                                style="flex: 1" />
+
+                            <t-button variant="outline" theme="default"
+                                @click="updateDifficultyValue('8749a106-3696-4bba-a267-ec0814c4ee46')">
+                                {{ t('monsters.lowest') }}
+                            </t-button>
+                            <t-button variant="outline" theme="default"
+                                @click="updateDifficultyValue('aa92e87f-9a58-4a8f-8613-c00ddb9e763a')">
+                                {{ t('monsters.recommended') }}
+                            </t-button>
+                        </div>
                     </t-form-item>
                 </t-col>
 
@@ -133,7 +162,9 @@ const bossRushPopTypeOptions = computed(() => {
 
                 <t-col :span="6">
                     <t-form-item :label="t('monsters.position')">
-                        <t-input :value="monster._InitPos" @change="(val: string) => updateField('_InitPos', val)" />
+                        <t-input :value="monster._InitPos" @change="(val: string) => updateField('_InitPos', val)"
+                            :disabled="!hasDefaults"
+                            :placeholder="hasDefaults ? stageDefaults?.initPos : 'Disabled for this map'" />
                     </t-form-item>
                 </t-col>
 

@@ -8,12 +8,13 @@
         "save": "Save",
         "saveAs": "Save As",
         "recent": "Recent Files",
-        "newQuest": "New Quest"
+        "newQuest": "New Quest",
+        "difficultyTool": "Difficulty Viewer"
     },
     "tabs": {
         "basic": "Basic Info",
         "monsters": "Monsters",
-        "rewards": "Rewards",
+        "rewards": "Extra Rewards",
         "messages": "Messages"
     },
     "basic": {
@@ -34,6 +35,9 @@
         "removeMonster": "Remove",
         "monsterType": "Monster",
         "difficulty": "Difficulty",
+        "difficultyUUID": "Difficulty UUID",
+        "lowest": "Lowest",
+        "recommended": "Recommended",
         "size": "Size",
         "fixedSize": "Fixed Size",
         "randomSize": "Random Size",
@@ -41,7 +45,7 @@
         "groupId": "Group ID"
     },
     "rewards": {
-        "title": "Quest Rewards",
+        "title": "Extra Rewards",
         "addItem": "Add Item",
         "removeItem": "Remove",
         "itemName": "Item Name",
@@ -55,7 +59,7 @@
         "language": "Language",
         "questTitle": "Quest Title",
         "clientName": "Client Name",
-        "detail": "Detail",
+        "detail": "Quest Description",
         "languages": {
             "en": "English",
             "zh": "Chinese",
@@ -93,5 +97,18 @@
             "delay": "Delay (sec)",
             "timeLimit": "Time Limit (sec)"
         }
+    },
+    "difficultyViewer": {
+        "title": "Difficulty Reference",
+        "rank": "Rank",
+        "grade": "Grade",
+        "health": "Health x",
+        "attack": "Attack x",
+        "stun": "Stun x",
+        "uuid": "UUID",
+        "action": "Action",
+        "uuidCopied": "UUID copied",
+        "filterRank": "Filter Rank",
+        "filterGrade": "Filter Grade"
     }
 }

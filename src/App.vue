@@ -4,7 +4,10 @@ import { useI18n } from 'vue-i18n';
 import { MessagePlugin } from 'tdesign-vue-next';
 import Sidebar from './components/Sidebar.vue';
 import QuestEditor from './components/QuestEditor.vue';
+import DifficultyViewer from './components/DifficultyViewer.vue';
+
 import type { QuestData, QuestRewardData } from './types/quest';
+import { DEFAULT_QUEST_DATA, DEFAULT_REWARD_DATA } from './constants/defaultQuest';
 
 const { t } = useI18n();
 
@@ -12,6 +15,7 @@ const questData = ref<QuestData | null>(null);
 const rewardData = ref<QuestRewardData | null>(null);
 const currentFileName = ref<string>('');
 const isLoading = ref(false);
+const showDifficultyViewer = ref(false);
 
 function readFileAsText(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -144,8 +148,8 @@ function saveFile() {
 }
 
 function newQuest() {
-  questData.value = null;
-  rewardData.value = null;
+  questData.value = JSON.parse(JSON.stringify(DEFAULT_QUEST_DATA));
+  rewardData.value = JSON.parse(JSON.stringify(DEFAULT_REWARD_DATA));
   currentFileName.value = '';
   MessagePlugin.info('Started new quest');
 }
@@ -161,7 +165,10 @@ function updateReward(reward: QuestRewardData) {
 
 <template>
   <div class="app-container">
-    <Sidebar @open-file="openFile" @save-file="saveFile" @new-quest="newQuest" />
+    <Sidebar @open-file="openFile" @save-file="saveFile" @new-quest="newQuest"
+      @open-difficulty-tool="showDifficultyViewer = true" />
+
+    <DifficultyViewer v-model:visible="showDifficultyViewer" />
 
     <main class="main-content">
       <t-loading :loading="isLoading" :text="t('app.loading')" size="large" show-overlay class="loading-container">

@@ -8,12 +8,13 @@
         "save": "保存",
         "saveAs": "另存为",
         "recent": "最近文件",
-        "newQuest": "新建任务"
+        "newQuest": "新建任务",
+        "difficultyTool": "难度查看器"
     },
     "tabs": {
         "basic": "基本信息",
         "monsters": "怪物",
-        "rewards": "奖励",
+        "rewards": "额外奖励",
         "messages": "消息"
     },
     "basic": {
@@ -34,6 +35,9 @@
         "removeMonster": "移除",
         "monsterType": "怪物",
         "difficulty": "难度",
+        "difficultyUUID": "难度 UUID",
+        "lowest": "最低难度",
+        "recommended": "推荐难度",
         "size": "体型",
         "fixedSize": "固定体型",
         "randomSize": "随机体型",
@@ -41,7 +45,7 @@
         "groupId": "组ID"
     },
     "rewards": {
-        "title": "任务奖励",
+        "title": "额外奖励",
         "addItem": "添加物品",
         "removeItem": "移除",
         "itemName": "物品名称",
@@ -55,7 +59,7 @@
         "language": "语言",
         "questTitle": "任务标题",
         "clientName": "委托人",
-        "detail": "详细信息",
+        "detail": "任务描述",
         "languages": {
             "en": "英语",
             "zh": "中文",
@@ -93,5 +97,18 @@
             "delay": "延迟 (秒)",
             "timeLimit": "时间限制 (秒)"
         }
+    },
+    "difficultyViewer": {
+        "title": "难度参考表",
+        "rank": "收益等级",
+        "grade": "个体等级",
+        "health": "血量倍率",
+        "attack": "攻击倍率",
+        "stun": "眩晕倍率",
+        "uuid": "UUID",
+        "action": "操作",
+        "uuidCopied": "UUID 已复制",
+        "filterRank": "筛选收益等级",
+        "filterGrade": "筛选个体等级"
     }
 }

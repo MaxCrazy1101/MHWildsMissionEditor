@@ -1,4 +1,6 @@
 // TypeScript interfaces matching Rust data structures
+import { STAGE_ID } from '../constants/stages';
+
 
 // Common types
 export interface NameValue<T> {
@@ -354,3 +356,35 @@ export interface Enemy {
     label: string;
     name: EnemyName;
 }
+
+export const QUEST_LEVEL_OPTIONS = [
+    { label: '★1', value: 1 },
+    { label: '★2', value: 2 },
+    { label: '★3', value: 3 },
+    { label: '★4', value: 4 },
+    { label: '★5', value: 5 },
+    { label: '★6', value: 6 },
+    { label: '★7', value: 7 },
+    { label: '★8', value: 8 },
+    { label: '★9', value: 9 }
+];
+
+export const MONSTER_DIFFICULTY_OPTIONS = [
+    { label: 'None', value: 'None' },
+    { label: '★1', value: '★1' },
+    { label: '★2', value: '★2' },
+    { label: '★3', value: '★3' },
+    { label: '★4', value: '★4' },
+    { label: '★5', value: '★5' },
+    { label: '★6', value: '★6' },
+    { label: '★7', value: '★7' },
+    { label: '★8', value: '★8' }
+];
+
+export const STAGE_OPTIONS = [
+    { label: 'Arena (st401)', value: STAGE_ID.ST401_ARENA, name: 'st401' },
+    { label: 'Windward Plains (st001)', value: STAGE_ID.ST001_WINDWARD_PLAINS, name: 'st001' },
+    { label: 'Scarlet Forest (st101)', value: STAGE_ID.ST101_SCARLET_FOREST, name: 'st101' },
+    { label: 'Oilwell Basin (st201)', value: STAGE_ID.ST201_OILWELL_BASIN, name: 'st201' },
+    { label: 'Cliffside Caverns (st301)', value: STAGE_ID.ST301_CLIFFSIDE_CAVERNS, name: 'st301' }
+];

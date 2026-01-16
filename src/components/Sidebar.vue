@@ -5,7 +5,8 @@ import {
     AddIcon,
     FolderOpenIcon,
     SaveIcon,
-    TranslateIcon
+    TranslateIcon,
+    SearchIcon
 } from 'tdesign-icons-vue-next';
 
 const { t, locale } = useI18n();
@@ -14,6 +15,7 @@ const emit = defineEmits<{
     openFile: [];
     saveFile: [];
     newQuest: [];
+    openDifficultyTool: [];
 }>();
 
 const recentFiles = ref<string[]>([]);
@@ -65,6 +67,17 @@ const hintText = {
                     <SaveIcon />
                 </template>
                 {{ t('sidebar.save') }}
+            </t-button>
+        </div>
+
+        <t-divider />
+
+        <div class="sidebar-tools">
+            <t-button block variant="text" @click="emit('openDifficultyTool')">
+                <template #icon>
+                    <SearchIcon />
+                </template>
+                {{ t('sidebar.difficultyTool') }}
             </t-button>
         </div>
 
@@ -132,6 +145,13 @@ export default {};
     flex: 1;
     padding: 16px;
     overflow-y: auto;
+    min-height: 0;
+    /* Important for flex child with overflow */
+}
+
+.sidebar-tools {
+    padding: 16px;
+    flex-shrink: 0;
 }
 
 .sidebar-section h3 {

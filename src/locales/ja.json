@@ -8,7 +8,8 @@
         "save": "保存",
         "saveAs": "名前を付けて保存",
         "recent": "最近のファイル",
-        "newQuest": "新規クエスト"
+        "newQuest": "新規クエスト",
+        "difficultyTool": "難易度ビューア"
     },
     "tabs": {
         "basic": "基本情報",
@@ -34,6 +35,9 @@
         "removeMonster": "削除",
         "monsterType": "モンスター",
         "difficulty": "難易度",
+        "difficultyUUID": "難易度 UUID",
+        "lowest": "最低難易度",
+        "recommended": "推奨難易度",
         "size": "サイズ",
         "fixedSize": "固定サイズ",
         "randomSize": "ランダムサイズ",
@@ -93,5 +97,16 @@
             "delay": "遅延 (秒)",
             "timeLimit": "制限時間 (秒)"
         }
+    },
+    "difficultyViewer": {
+        "title": "難易度参照",
+        "rank": "ランク",
+        "grade": "グレード",
+        "health": "体力倍率",
+        "attack": "攻撃倍率",
+        "stun": "気絶倍率",
+        "uuid": "UUID",
+        "action": "操作",
+        "uuidCopied": "UUIDをコピーしました"
     }
 }
