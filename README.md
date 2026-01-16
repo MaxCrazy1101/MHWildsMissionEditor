@@ -1,7 +1,61 @@
-# Tauri + Vue + TypeScript
+# MHWilds Mission Editor
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+这是一个基于 Vue 3 构建的 Monster Hunter Wilds 任务编辑器。该项目旨在提供一个可视化的界面，用于编辑和管理游戏内的任务数据及相关配置。
 
-## Recommended IDE Setup
+## 功能特性
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+本项目提供以下核心功能，帮助用户高效管理游戏任务数据：
+
+### 1. 任务数据编辑
+-   **全功能编辑器**：支持修改各类任务参数（`QuestData`）及报酬数据（`RewardData`）。
+-   **直观的操作界面**：提供可视化的表单和控件，简化复杂 JSON 数据的修改过程。
+-   **新建任务**：支持从零开始创建新的任务配置文件。
+
+### 2. 文件与项目管理
+-   **智能文件加载**：支持拖拽或选择多个文件，自动识别并关联 `.raw.json`（任务数据）和 `.ext.json`（扩展/报酬数据）文件对。
+-   **批量处理**：支持同时加载和管理多个任务文件。
+-   **一键保存**：编辑完成后可直接将修改后的数据导出为符合游戏格式的 JSON 文件。
+
+### 3. 辅助工具
+-   **难度查看器 (Difficulty Viewer)**：内置独立的难度查看工具，方便查阅和对比游戏内的难度设定数据。
+-   **数据生成工具**：
+    -   提供 Python 脚本工具（位于 `tools/` 目录），用于处理原始游戏数据。
+    -   支持从 CSV (`Item.msg.23.csv`) 和 JSON (`ItemData.json`) 源生成编辑器所需的 `items.json` 引用数据。
+
+### 4. 国际化支持
+-   **多语言界面**：编辑器界面支持多语言切换，适应不同用户需求。
+
+## 环境准备与开发
+
+在开始使用或开发之前，请确保已安装 Node.js 环境。
+
+### 安装依赖
+
+```bash
+npm install
+```
+
+### 启动应用
+
+```bash
+npm run dev
+```
+启动后即可在浏览器中访问编辑器界面。
+
+### 构建发布
+
+```bash
+npm run build
+```
+构建产物将输出到 `dist` 目录。
+
+## 项目结构说明
+
+-   `src/`：前端编辑器源码，包含核心的编辑器组件 (`QuestEditor`)、难度查看器 (`DifficultyViewer`) 以及相关业务逻辑。
+-   `tools/`：包含数据处理脚本，主要用于生成和维护编辑器依赖的静态数据资源。
+-   `public/`：静态资源目录。
+
+## 注意事项
+
+-   **数据依赖**：本编辑器依赖于从游戏解包出的特定 JSON 数据文件，使用前请确保相关资源正确加载。
+-   **脚本使用**：在使用 `tools/` 下的 Python 脚本生成数据时，请注意源文件的编码格式，以免出现字符乱码问题。
