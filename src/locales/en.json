@@ -3,13 +3,21 @@
         "title": "MHWilds Mission Editor",
         "loading": "Loading..."
     },
+    "theme": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
     "sidebar": {
+        "project": "Project",
+        "tools": "Tools",
         "open": "Open",
         "save": "Save",
         "saveAs": "Save As",
         "recent": "Recent Files",
         "newQuest": "New Quest",
-        "difficultyTool": "Difficulty Viewer"
+        "difficultyTool": "Difficulty Viewer",
+        "hint": "Select both .raw.json & .ext.json"
     },
     "tabs": {
         "basic": "Basic Info",

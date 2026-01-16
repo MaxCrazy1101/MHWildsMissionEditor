@@ -25,6 +25,11 @@
 ### 4. 国际化支持
 -   **多语言界面**：编辑器界面支持多语言切换，适应不同用户需求。
 
+## 相关链接
+
+-   **GitHub 仓库**: [https://github.com/MaxCrazy1101/MHWildsMissionEditor](https://github.com/MaxCrazy1101/MHWildsMissionEditor)
+-   **Nexus Mods**: [https://www.nexusmods.com/monsterhunterwilds/mods/1096](https://www.nexusmods.com/monsterhunterwilds/mods/1096)
+
 ## 环境准备与开发
 
 在开始使用或开发之前，请确保已安装 Node.js 环境。

@@ -11,6 +11,8 @@ function getDefaultLocale(): string {
     return 'en';
 }
 
+
+
 const i18n = createI18n({
     legacy: false,
     locale: getDefaultLocale(),

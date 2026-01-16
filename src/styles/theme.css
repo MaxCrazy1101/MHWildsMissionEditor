@@ -1,0 +1,56 @@
+html[theme-mode="dark"] {
+  /* Base Backgrounds - Deep Slate/Gunmetal */
+  --td-bg-color-page: #18181c;
+  --td-bg-color-container: #1e1e24;
+  --td-bg-color-secondarycontainer: #25252b;
+  --td-bg-color-component: #2c2c34;
+
+  /* Text Colors */
+  --td-text-color-primary: #e3e3e8;
+  --td-text-color-secondary: #a9a9b0;
+  --td-text-color-placeholder: #68686e;
+  --td-text-color-disabled: #4a4a50;
+
+  /* Brand Colors - Hunter Orange/Gold Accent */
+  /* Re-mapping brand blue to a sophisticated blue or gold if desired, 
+     but keeping blue for consistency with TDesign interaction states is often safer. 
+     Let's refine the blue to be more "electric" or "deep" to match dark mode. */
+  --td-brand-color: #4b9bf6;
+  --td-brand-color-hover: #69aef8;
+  --td-brand-color-focus: #4b9bf6;
+  --td-brand-color-active: #2880e6;
+  --td-brand-color-disabled: #2a3d54;
+  --td-brand-color-light: #1f2a3a;
+
+  /* Component Strokes/Borders */
+  --td-component-stroke: #33333a;
+  --td-component-border: #33333a;
+
+  /* Success/Warning/Error overrides for better dark mode visibility if needed */
+  --td-success-color: #00a870;
+  --td-warning-color: #e37318;
+  --td-error-color: #e34d59;
+}
+
+/* Force dark scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: var(--td-bg-color-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--td-bg-color-component);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--td-text-color-disabled);
+}
+
+body {
+  background-color: var(--td-bg-color-page);
+  color: var(--td-text-color-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

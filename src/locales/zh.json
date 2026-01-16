@@ -3,13 +3,21 @@
         "title": "怪物猎人荒野任务编辑器",
         "loading": "加载中..."
     },
+    "theme": {
+        "light": "明亮",
+        "dark": "暗黑",
+        "system": "跟随系统"
+    },
     "sidebar": {
+        "project": "项目",
+        "tools": "工具",
         "open": "打开",
         "save": "保存",
         "saveAs": "另存为",
         "recent": "最近文件",
         "newQuest": "新建任务",
-        "difficultyTool": "难度查看器"
+        "difficultyTool": "难度查看器",
+        "hint": "可同时选择 .raw.json 和 .ext.json"
     },
     "tabs": {
         "basic": "基本信息",

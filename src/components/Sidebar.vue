@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { ref } from 'vue';
+
 import {
     AddIcon,
     FolderOpenIcon,
     SaveIcon,
     TranslateIcon,
-    SearchIcon
+    SearchIcon,
+    LogoGithubIcon,
+    LinkIcon,
+    SunnyIcon,
+    MoonIcon,
+    DesktopIcon,
 } from 'tdesign-icons-vue-next';
+import { useThemeStore } from '../stores/theme';
 
 const { t, locale } = useI18n();
+const themeStore = useThemeStore();
 
 const emit = defineEmits<{
     openFile: [];
@@ -17,8 +24,6 @@ const emit = defineEmits<{
     newQuest: [];
     openDifficultyTool: [];
 }>();
-
-const recentFiles = ref<string[]>([]);
 
 const languages = [
     { value: 'en', label: 'English' },
@@ -30,11 +35,6 @@ function changeLanguage(val: string) {
     locale.value = val;
 }
 
-const hintText = {
-    en: 'Select both .raw.json & .ext.json',
-    zh: '可同时选择 .raw.json 和 .ext.json',
-    ja: '.raw.jsonと.ext.jsonを同時選択可能'
-};
 </script>
 
 <template>
@@ -43,67 +43,94 @@ const hintText = {
             <h2>🎮 MHWilds Editor</h2>
         </div>
 
-        <div class="sidebar-actions">
-            <t-button block variant="outline" @click="emit('newQuest')">
-                <template #icon>
-                    <AddIcon />
-                </template>
-                {{ t('sidebar.newQuest') }}
-            </t-button>
+        <div class="sidebar-content">
+            <div class="sidebar-group">
+                <div class="group-title">{{ t('sidebar.project') }}</div>
+                <div class="group-items">
+                    <t-button block variant="text" @click="emit('newQuest')">
+                        <template #icon>
+                            <AddIcon />
+                        </template>
+                        {{ t('sidebar.newQuest') }}
+                    </t-button>
 
-            <t-button block variant="outline" @click="emit('openFile')">
-                <template #icon>
-                    <FolderOpenIcon />
-                </template>
-                {{ t('sidebar.open') }}
-            </t-button>
+                    <t-tooltip :content="t('sidebar.hint')" placement="right">
+                        <t-button block variant="text" @click="emit('openFile')">
+                            <template #icon>
+                                <FolderOpenIcon />
+                            </template>
+                            {{ t('sidebar.open') }}
+                        </t-button>
+                    </t-tooltip>
 
-            <t-tooltip :content="hintText[locale as keyof typeof hintText] || hintText.en">
-                <p class="action-hint">💡 {{ hintText[locale as keyof typeof hintText] || hintText.en }}</p>
-            </t-tooltip>
+                    <t-button block variant="text" @click="emit('saveFile')">
+                        <template #icon>
+                            <SaveIcon />
+                        </template>
+                        {{ t('sidebar.save') }}
+                    </t-button>
+                </div>
+            </div>
 
-            <t-button block theme="primary" @click="emit('saveFile')">
-                <template #icon>
-                    <SaveIcon />
-                </template>
-                {{ t('sidebar.save') }}
-            </t-button>
-        </div>
+            <t-divider class="group-divider" />
 
-        <t-divider />
-
-        <div class="sidebar-tools">
-            <t-button block variant="text" @click="emit('openDifficultyTool')">
-                <template #icon>
-                    <SearchIcon />
-                </template>
-                {{ t('sidebar.difficultyTool') }}
-            </t-button>
-        </div>
-
-        <t-divider />
-
-        <div class="sidebar-section">
-            <h3>{{ t('sidebar.recent') }}</h3>
-            <t-list v-if="recentFiles.length" :split="true">
-                <t-list-item v-for="file in recentFiles" :key="file">
-                    {{ file }}
-                </t-list-item>
-            </t-list>
-            <t-tag v-else variant="light" theme="default">No recent files</t-tag>
+            <div class="sidebar-group">
+                <div class="group-title">{{ t('sidebar.tools') }}</div>
+                <div class="group-items">
+                    <t-button block variant="text" @click="emit('openDifficultyTool')">
+                        <template #icon>
+                            <SearchIcon />
+                        </template>
+                        {{ t('sidebar.difficultyTool') }}
+                    </t-button>
+                </div>
+            </div>
         </div>
 
         <div class="sidebar-footer">
-            <t-select :value="locale" @change="changeLanguage" :options="languages" size="small"
-                :prefix-icon="() => h(TranslateIcon)" />
+
+            <div class="footer-actions">
+                <div class="external-links">
+                    <t-button variant="text" shape="square" href="https://github.com/MaxCrazy1101/MHWildsMissionEditor"
+                        target="_blank">
+                        <template #icon>
+                            <LogoGithubIcon />
+                        </template>
+                    </t-button>
+                    <t-button variant="text" shape="square"
+                        href="https://www.nexusmods.com/monsterhunterwilds/mods/1096" target="_blank"
+                        v-bind="{ title: 'Nexus Mods' }">
+                        <template #icon>
+                            <LinkIcon />
+                        </template>
+                    </t-button>
+                </div>
+
+                <div class="theme-switcher">
+                    <t-tooltip :content="t(`theme.${themeStore.mode}`)" placement="top">
+                        <t-button variant="text" shape="square" @click="themeStore.nextTheme()">
+                            <template #icon>
+                                <SunnyIcon v-if="themeStore.mode === 'light'" />
+                                <MoonIcon v-else-if="themeStore.mode === 'dark'" />
+                                <DesktopIcon v-else />
+                            </template>
+                        </t-button>
+                    </t-tooltip>
+                </div>
+
+                <div class="lang-selector">
+                    <t-select :value="locale" @change="changeLanguage" :options="languages" size="small" borderless>
+                        <template #prefixIcon>
+                            <TranslateIcon />
+                        </template>
+                    </t-select>
+                </div>
+            </div>
         </div>
     </aside>
 </template>
 
-<script lang="ts">
-import { h } from 'vue';
-export default {};
-</script>
+
 
 <style scoped>
 .sidebar {
@@ -113,57 +140,92 @@ export default {};
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .sidebar-header {
-    padding: 20px;
-    border-bottom: 1px solid var(--td-component-stroke);
+    padding: 24px 20px;
 }
 
 .sidebar-header h2 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--td-text-color-primary);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
-.sidebar-actions {
-    padding: 16px;
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px 0;
+}
+
+.sidebar-group {
+    padding: 0 12px;
+}
+
+.group-title {
+    font-size: 0.75rem;
+    color: var(--td-text-color-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+}
+
+.group-items {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 4px;
 }
 
-.action-hint {
-    font-size: 0.75rem;
-    color: var(--td-text-color-placeholder);
-    text-align: center;
-    margin: 4px 0;
-}
-
-.sidebar-section {
+/* Override TDesign button alignment */
+.group-items :deep(.t-button__text) {
+    text-align: left;
     flex: 1;
-    padding: 16px;
-    overflow-y: auto;
-    min-height: 0;
-    /* Important for flex child with overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.sidebar-tools {
-    padding: 16px;
-    flex-shrink: 0;
+.group-items :deep(.t-button) {
+    justify-content: flex-start;
+    padding-left: 12px;
 }
 
-.sidebar-section h3 {
-    margin: 0 0 12px 0;
-    font-size: 0.85rem;
-    color: var(--td-text-color-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+.group-divider {
+    margin: 16px 24px;
+    opacity: 0.6;
 }
 
 .sidebar-footer {
     padding: 16px;
     border-top: 1px solid var(--td-component-stroke);
+    background: var(--td-bg-color-secondarycontainer);
+}
+
+
+
+.footer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.external-links {
+    display: flex;
+    gap: 4px;
+}
+
+.lang-selector {
+    width: 90px;
+}
+
+.lang-selector :deep(.t-input) {
+    background: transparent;
 }
 </style>
