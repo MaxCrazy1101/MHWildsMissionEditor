@@ -3,7 +3,7 @@ import { STAGE_ID } from './stages';
 
 export const DEFAULT_MONSTER_DATA: MainTargetData = {
     _AdvancedSettings: { _IsDeepSleepCreate: false },
-    _AreaNo: 255,
+    _AreaNo: 1,
     _DifficultyAdjustRange: 0,
     _DifficultyRankId: { Name: "", Value: "00000000-0000-0000-0000-000000000000" },
     _EmID: 0,
@@ -15,7 +15,7 @@ export const DEFAULT_MONSTER_DATA: MainTargetData = {
     _LayoutKeepID: -1,
     _LegendaryID: "NORMAL",
     _OptionTag: { Value: 0 },
-    _RandomSizeTblId: { Name: "", Value: "f8f74ab0-0002-0000-00000002003e203e" },
+    _RandomSizeTblId: { Name: "", Value: "00000000-0000-0000-0000-000000000000" },
     _RoleID: "NORMAL",
     _RouteID: { Name: "斗技场", _Value: "7ae19f9f-f315-4f16-cc4fc595f9f7c483" },
     _SetAreaNo: 255,

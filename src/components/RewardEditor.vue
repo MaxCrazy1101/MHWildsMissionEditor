@@ -26,10 +26,10 @@ const itemOptions = computed(() => {
     const idx = langIndex.value;
     return itemsData.map(item => {
         // Safe access to name, fallback to English or ID if missing
-        const name = (item.name as any)[idx] || (item.name as any)[1] || `Item ${item.fixedId}`;
+        const name = (item.name as any)[idx] || (item.name as any)[1] || `Item ${item.id}`;
         return {
-            label: `${name} (${item.fixedId})`,
-            value: item.fixedId,
+            label: `${name} (${item.id})`,
+            value: item.id,
             // Store raw name for auto-fill
             rawName: name
         };
