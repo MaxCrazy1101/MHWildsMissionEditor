@@ -1,7 +1,8 @@
 {
     "app": {
         "title": "MHWilds Mission Editor",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "emptyState": "Open a quest file to start editing"
     },
     "theme": {
         "light": "Light",

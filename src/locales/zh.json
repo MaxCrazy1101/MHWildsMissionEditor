@@ -1,7 +1,8 @@
 {
     "app": {
         "title": "怪物猎人荒野任务编辑器",
-        "loading": "加载中..."
+        "loading": "加载中...",
+        "emptyState": "打开任务文件开始编辑"
     },
     "theme": {
         "light": "明亮",

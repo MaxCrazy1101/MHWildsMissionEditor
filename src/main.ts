@@ -17,8 +17,4 @@ app.use(pinia);
 app.use(TDesign);
 app.use(i18n);
 
-// Initialize theme
-import { useThemeStore } from './stores/theme';
-const themeStore = useThemeStore(); // This triggers the immediate watcher to set the theme
-
 app.mount("#app");

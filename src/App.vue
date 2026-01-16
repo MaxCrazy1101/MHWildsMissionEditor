@@ -151,7 +151,6 @@ function newQuest() {
   questData.value = JSON.parse(JSON.stringify(DEFAULT_QUEST_DATA));
   rewardData.value = JSON.parse(JSON.stringify(DEFAULT_REWARD_DATA));
   currentFileName.value = '';
-  MessagePlugin.info('Started new quest');
 }
 
 function updateQuest(quest: QuestData) {

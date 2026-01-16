@@ -3,6 +3,7 @@ import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { CopyIcon } from 'tdesign-icons-vue-next';
 import { MessagePlugin } from 'tdesign-vue-next';
+import type { FilterValue } from 'tdesign-vue-next';
 import difficultyData from '../assets/EmCommonDifficulty2.user.3.json';
 
 const props = defineProps<{
@@ -25,14 +26,45 @@ interface DifficultyRow {
     stun: number;
 }
 
+// Filter value state for TDesign table
+const filterValue = ref<FilterValue>({});
+
+// Generate unique rank options for filter dropdown
+const rankOptions = computed(() => {
+    const ranks = [...new Set(tableData.value.map(item => item.rank))].sort((a, b) => Number(a) - Number(b));
+    return ranks.map(r => ({ label: r, value: r }));
+});
+
+// Generate unique grade options for filter dropdown
+const gradeOptions = computed(() => {
+    const grades = [...new Set(tableData.value.map(item => item.grade))].sort((a, b) => a - b);
+    return grades.map(g => ({ label: String(g), value: g }));
+});
+
 const columns = computed(() => [
-    { colKey: 'rank', title: t('difficultyViewer.rank'), width: 120 },
-    { colKey: 'grade', title: t('difficultyViewer.grade'), width: 80 },
-    { colKey: 'health', title: t('difficultyViewer.health'), width: 90 },
-    { colKey: 'attack', title: t('difficultyViewer.attack'), width: 90 },
-    { colKey: 'stun', title: t('difficultyViewer.stun'), width: 90 },
-    { colKey: 'uuid', title: t('difficultyViewer.uuid'), width: 320 },
-    { colKey: 'actions', title: t('difficultyViewer.action'), width: 80, fixed: 'right' }
+    {
+        colKey: 'rank',
+        title: t('difficultyViewer.rank'),
+        filter: {
+            type: 'single',
+            list: rankOptions.value,
+            showConfirmAndReset: true
+        }
+    },
+    {
+        colKey: 'grade',
+        title: t('difficultyViewer.grade'),
+        filter: {
+            type: 'single',
+            list: gradeOptions.value,
+            showConfirmAndReset: true
+        }
+    },
+    { colKey: 'health', title: t('difficultyViewer.health') },
+    { colKey: 'attack', title: t('difficultyViewer.attack') },
+    { colKey: 'stun', title: t('difficultyViewer.stun') },
+    { colKey: 'uuid', title: t('difficultyViewer.uuid'), ellipsis: true },
+    { colKey: 'actions', title: t('difficultyViewer.action'), width: 80, fixed: 'right' as const }
 ]);
 
 const tableData = computed<DifficultyRow[]>(() => {
@@ -44,8 +76,6 @@ const tableData = computed<DifficultyRow[]>(() => {
         if (!difficultyParam) return [];
 
         const arrayContainer = difficultyParam["_DifficultyRateArray"];
-        // The key is likely "ace.cInstanceGuidArray`1<app.user_data.EmParamDifficulty2.cDifficultyRate>"
-        // But keys might vary or be specific. We can find the key that contains "_DataArray".
         const arrayKey = Object.keys(arrayContainer).find(k => arrayContainer[k]["_DataArray"]);
         if (!arrayKey) return [];
 
@@ -55,7 +85,6 @@ const tableData = computed<DifficultyRow[]>(() => {
             const data = item["app.user_data.EmParamDifficulty2.cDifficultyRate"];
             if (!data) return null;
 
-            // Parse Reward Rank "[-1196666624]REWARD_RANK_01" -> "1"
             let rankStr = data["_RewardRank"]?.["app.QuestDef.EM_REWARD_RANK_Serializable"]?.["_Value"] || "";
             const rankMatch = rankStr.match(/REWARD_RANK_(\d+)/);
             if (rankMatch) {
@@ -82,6 +111,19 @@ const tableData = computed<DifficultyRow[]>(() => {
     }
 });
 
+// Filtered data based on TDesign filter
+const filteredTableData = computed(() => {
+    return tableData.value.filter(item => {
+        const matchRank = !filterValue.value.rank || item.rank === filterValue.value.rank;
+        const matchGrade = !filterValue.value.grade || item.grade === filterValue.value.grade;
+        return matchRank && matchGrade;
+    });
+});
+
+const onFilterChange = (filters: FilterValue) => {
+    filterValue.value = filters;
+};
+
 const onCopy = (uuid: string) => {
     navigator.clipboard.writeText(uuid).then(() => {
         MessagePlugin.success(t('difficultyViewer.uuidCopied'));
@@ -91,52 +133,37 @@ const onCopy = (uuid: string) => {
 const onClose = () => {
     emit('update:visible', false);
 };
-
-const filterRank = ref('');
-const filterGrade = ref('');
-
-const filteredTableData = computed(() => {
-    return tableData.value.filter(item => {
-        const matchRank = !filterRank.value || item.rank.includes(filterRank.value);
-        const matchGrade = !filterGrade.value || String(item.grade).includes(filterGrade.value);
-        return matchRank && matchGrade;
-    });
-});
 </script>
 
 <template>
-    <t-dialog :visible="visible" :footer="false" :header="t('difficultyViewer.title')" width="900px" placement="center"
+    <t-dialog :visible="visible" :footer="false" :header="t('difficultyViewer.title')" width="1000px" placement="center"
         @close="onClose">
-        <div class="difficulty-viewer">
-            <t-row :gutter="16" style="margin-bottom: 12px">
-                <t-col :span="4">
-                    <t-input v-model="filterRank" :placeholder="t('difficultyViewer.filterRank')" clearable />
-                </t-col>
-                <t-col :span="4">
-                    <t-input v-model="filterGrade" :placeholder="t('difficultyViewer.filterGrade')" clearable />
-                </t-col>
-            </t-row>
-
-            <t-table :data="filteredTableData" :columns="columns" row-key="uuid" :pagination="{ defaultPageSize: 10 }"
-                stripe hover>
-                <template #uuid="{ row }">
-                    <span style="font-family: monospace; font-size: 12px;">{{ row.uuid }}</span>
-                </template>
-                <template #actions="{ row }">
-                    <t-button variant="text" shape="circle" @click="onCopy(row.uuid)">
-                        <template #icon>
-                            <CopyIcon />
-                        </template>
-                    </t-button>
-                </template>
-            </t-table>
-        </div>
+        <t-table :data="filteredTableData" :columns="columns" row-key="uuid" :max-height="500"
+            :filter-value="filterValue" @filter-change="onFilterChange" stripe hover>
+            <template #uuid="{ row }">
+                <t-tooltip :content="row.uuid" placement="top-left">
+                    <code class="uuid-cell">{{ row.uuid }}</code>
+                </t-tooltip>
+            </template>
+            <template #actions="{ row }">
+                <t-button variant="text" shape="circle" @click="onCopy(row.uuid)">
+                    <template #icon>
+                        <CopyIcon />
+                    </template>
+                </t-button>
+            </template>
+        </t-table>
     </t-dialog>
 </template>
 
 <style scoped>
-.difficulty-viewer {
-    max-height: 600px;
-    overflow-y: auto;
+.uuid-cell {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 12px;
+    color: var(--td-text-color-secondary);
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 </style>

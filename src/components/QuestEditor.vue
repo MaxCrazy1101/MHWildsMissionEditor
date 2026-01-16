@@ -444,7 +444,7 @@ function updateRewardItems(items: QuestRewardData['rewardItems']) {
         <div class="editor-content">
             <!-- Empty State -->
             <div v-if="!questData" class="empty-state">
-                <t-empty description="Open a quest file to start editing">
+                <t-empty :description="t('app.emptyState')">
                     <template #image>
                         <BrowseIcon size="80" style="color: var(--td-text-color-placeholder)" />
                     </template>

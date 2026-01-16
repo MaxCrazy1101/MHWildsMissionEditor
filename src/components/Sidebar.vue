@@ -88,43 +88,38 @@ function changeLanguage(val: string) {
         </div>
 
         <div class="sidebar-footer">
-
             <div class="footer-actions">
-                <div class="external-links">
+                <t-tooltip content="GitHub" placement="top">
                     <t-button variant="text" shape="square" href="https://github.com/MaxCrazy1101/MHWildsMissionEditor"
                         target="_blank">
                         <template #icon>
                             <LogoGithubIcon />
                         </template>
                     </t-button>
+                </t-tooltip>
+                <t-tooltip content="Nexus Mods" placement="top">
                     <t-button variant="text" shape="square"
-                        href="https://www.nexusmods.com/monsterhunterwilds/mods/1096" target="_blank"
-                        v-bind="{ title: 'Nexus Mods' }">
+                        href="https://www.nexusmods.com/monsterhunterwilds/mods/1096" target="_blank">
                         <template #icon>
                             <LinkIcon />
                         </template>
                     </t-button>
-                </div>
-
-                <div class="theme-switcher">
-                    <t-tooltip :content="t(`theme.${themeStore.mode}`)" placement="top">
-                        <t-button variant="text" shape="square" @click="themeStore.nextTheme()">
-                            <template #icon>
-                                <SunnyIcon v-if="themeStore.mode === 'light'" />
-                                <MoonIcon v-else-if="themeStore.mode === 'dark'" />
-                                <DesktopIcon v-else />
-                            </template>
-                        </t-button>
-                    </t-tooltip>
-                </div>
-
-                <div class="lang-selector">
-                    <t-select :value="locale" @change="changeLanguage" :options="languages" size="small" borderless>
-                        <template #prefixIcon>
-                            <TranslateIcon />
+                </t-tooltip>
+                <t-tooltip :content="t(`theme.${themeStore.mode}`)" placement="top">
+                    <t-button variant="text" shape="square" @click="themeStore.nextTheme()">
+                        <template #icon>
+                            <SunnyIcon v-if="themeStore.mode === 'light'" />
+                            <MoonIcon v-else-if="themeStore.mode === 'dark'" />
+                            <DesktopIcon v-else />
                         </template>
-                    </t-select>
-                </div>
+                    </t-button>
+                </t-tooltip>
+                <t-select :value="locale" @change="changeLanguage" :options="languages" size="small" borderless
+                    class="lang-selector">
+                    <template #prefixIcon>
+                        <TranslateIcon />
+                    </template>
+                </t-select>
             </div>
         </div>
     </aside>
@@ -212,17 +207,12 @@ function changeLanguage(val: string) {
 .footer-actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-}
-
-.external-links {
-    display: flex;
     gap: 4px;
 }
 
 .lang-selector {
-    width: 90px;
+    flex: 1;
+    min-width: 0;
 }
 
 .lang-selector :deep(.t-input) {
