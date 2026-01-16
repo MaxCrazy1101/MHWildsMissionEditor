@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { MessagePlugin } from 'tdesign-vue-next';
 import Sidebar from './components/Sidebar.vue';
@@ -10,6 +10,11 @@ import type { QuestData, QuestRewardData } from './types/quest';
 import { DEFAULT_QUEST_DATA, DEFAULT_REWARD_DATA } from './constants/defaultQuest';
 
 const { t } = useI18n();
+
+// Dynamic page title based on locale
+watchEffect(() => {
+  document.title = t('app.title');
+});
 
 const questData = ref<QuestData | null>(null);
 const rewardData = ref<QuestRewardData | null>(null);

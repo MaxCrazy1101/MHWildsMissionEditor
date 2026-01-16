@@ -1,6 +1,6 @@
 {
     "app": {
-        "title": "MHWilds ミッションエディター",
+        "title": "MHWilds カスタムミッションエディター",
         "loading": "読み込み中...",
         "emptyState": "クエストファイルを開いて編集を始めましょう"
     },

@@ -1,6 +1,6 @@
 {
     "app": {
-        "title": "MHWilds Mission Editor",
+        "title": "MHWilds Custom Mission Editor",
         "loading": "Loading...",
         "emptyState": "Open a quest file to start editing"
     },
